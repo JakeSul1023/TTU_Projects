@@ -1,1 +1,1 @@
-# TTU_Fall2022
+# TTU_Projects
