@@ -1,5 +1,5 @@
 /*
-	Title:  	GraphMatrix.h
+	Title:  	GraphMatrix.h (given)
 	Author:		April R. Crockett
 	Date:		February 24, 2022
 	Purpose:	Adjacency matrix for representing a graph
