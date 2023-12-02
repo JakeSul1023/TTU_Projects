@@ -1,106 +1,120 @@
 BITS 32
-SYS_EXIT equ 1
-SYS_READ equ 3
-SYS_WRITE equ 4
-STDIN equ 0
-STDOUT equ 1
 
 segment .data
-    msg1 db "Please enter a string: "
+
+    msg0 db "Please enter a string:", 0xA
+    len0 equ $- msg0
+
+    msg1 db "It is a palindrome", 0xA
     len1 equ $- msg1
 
-    msg2 db "It is a palindrome"
+    msg2 db "It is NOT a palindrome", 0xA
     len2 equ $- msg2
 
-    msg3 db "It is NOT a palindrome"
-    len3 equ $- msg3
-
-    msg4 db 0xa ;New line
-    len4 equ $- msg4
-
 segment .bss
-    userStr resb 1024   ;User string input
 
-section .text 
+    userStr resb 1024    ; Reserve space for userStr
+
+segment .text
+
     GLOBAL _start
 
 _start:
-    ;Input string message
+    ; Print msg0
+    mov eax, 4              
+    mov ebx, 1             
+    mov ecx, msg0           
+    mov edx, len0           
+    int 0x80                
+
+    ; Read user input
+    mov eax, 3              
+    mov ebx, 0              
+    mov ecx, userStr
+    mov edx, 1024
+    int 0x80
+
+    ; Checks if user input is 0
+    cmp BYTE[userStr], 0    
+    je exit                 
+
+    ; Adjust input length for character exclusion
+    sub eax, 2
+
+    ; Push eax and the userStr onto stack
+    push eax
+    push userStr
+
+    ; Call is_palin function
+    call palin_load
+    add esp, 8          ; Restore the stack
+    cmp eax, 1          ; Checking if its palindrome
+    jne not_palin  
+
+    ; Print msg1
     mov eax, 4
     mov ebx, 1
     mov ecx, msg1
     mov edx, len1
     int 0x80
+    
+    ; Loop, restart program
+    jmp _start
 
-    ;New line
-    mov eax, 4
-    mov ebx, 1
-    mov ecx, msg4
-    mov edx, len4
-    int 0x80
+not_palin:
 
-    ;User input 
-    mov eax, 3
-    mov ebx, 0
-    mov ecx, userStr
-    mov edx, 1024
-    int 0x80
-
-    ;Checks for no data if yes end
-    cmp BYTE[userStr], 0xa
-    je end
-
-    dec eax ;Adjust for the newline
-    lea edx, [userStr + eax -1] ;Address for the last character
-    lea ecx, [userStr]          ;Base address
-    push edx
-    push ecx
-    call palinSetup   ;Calls the palindrome checker
-
-    ;New line
-    mov eax, 4
-    mov ebx, 1
-    mov ecx, msg4
-    mov edx, len4
-    int 0x80
-
-    jmp _start  ;Restarts loop
-
-palinSetup:
-    mov ebp, esp       ;Set up stack
-    mov ecx, [ebp + 4] ;Base address of the string
-    mov edx, [ebp + 8] ;Address of the last character
-
-compLoop:
-    mov al, [ecx]   ;Base address character into al
-    mov bl, [edx]   ;Last character address into bl
-    cmp al, bl      ;Comparing characters
-    jne notPalin    ;Ends if not equal
-    inc ecx         ;Moves pointer
-    dec edx         ;Moves pointer
-    cmp ecx, edx    ;Compares pointer
-    jle compLoop    ;Continues loop till pointers cross
-
-yesPalin:
-    ;Displays if it is a palindrome      
+    ; Print msg2
     mov eax, 4
     mov ebx, 1
     mov ecx, msg2
     mov edx, len2
     int 0x80
-    ret
 
-notPalin:
-    ;Displays if it's not a palindrome
-    mov eax, 4
-    mov ebx, 1
-    mov ecx, msg3
-    mov edx, len3
-    int 0x80
-    ret ;jmp _start
+    jmp _start
 
-end:
-    ;Ends the program
+exit:
+
     mov eax, 1
-    xor ebx, ebx
-    int 0x80    
+    mov ebx, 0
+    int 0x80
+
+palin_load:
+
+    push ebp                ; Push base pointer
+    mov ebp, esp            ; Establish new base pointer
+    pusha                   ; Save register values
+
+    mov eax, [ebp + 8]      ; Load address of userStr from stack
+    mov ebx, [ebp + 12]     ; Load length of string from stack
+
+    mov ecx, eax            ; Copy address of buffer
+    add ecx, ebx            ; Calculate end address of string
+
+palin_loop:
+
+    cmp eax, ecx            ; Compare current & end addresses
+    jge end_palin   
+
+    mov dl, [eax]           ; Load character from front of string
+    mov dh, [ecx]           ; Load character from end of string
+
+    cmp dl, dh                  
+    jne end_not_palin     
+
+    inc eax                 ; Increment to next character from start
+    dec ecx                 ; Decrement to previous character from end
+    jmp palin_loop          ; Jump to repeat loop
+
+end_palin:
+
+    popa                    ; Restore register
+    pop ebp                 ; Restore base pointer
+    mov eax, 1              ; Return 1 to indicate a palindrome
+    ret                     
+
+end_not_palin:
+
+    popa
+    pop ebp
+    mov eax, 0
+    ret
