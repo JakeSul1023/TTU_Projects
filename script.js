@@ -20,5 +20,25 @@ document.getElementById("yesButton").addEventListener("click", function() {
         document.body.appendChild(heart);
     }
 });
+document.getElementById("yesButton").addEventListener("click", function() {
+    // Create an image element
+    const image = document.createElement("img");
+    image.src = "image.jpg"; // Replace with the path to your image
+    image.className = "popup-image";
+
+    // Optional: Create a div to act as an overlay
+    const overlay = document.createElement("div");
+    overlay.className = "overlay";
+
+    // Append the image and overlay to the body
+    overlay.appendChild(image);
+    document.body.appendChild(overlay);
+
+    // Close the pop-up when clicking on the overlay
+    overlay.addEventListener("click", function() {
+        document.body.removeChild(overlay);
+    });
+});
+
 
 
