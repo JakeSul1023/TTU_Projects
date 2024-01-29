@@ -29,7 +29,7 @@ document.getElementById("yesButton").addEventListener("click", function() {
     // Create a text element
     const text = document.createElement("div");
     text.className = "overlay-text";
-    text.textContent = "I LOVE YOU!\n(i buy you coffee)"; // Replace with your text
+    text.textContent = "I LOVE YOU!\n  (i buy you coffee)"; // Replace with your text
 
     // Optional: Create a div to act as an overlay
     const overlay = document.createElement("div");
