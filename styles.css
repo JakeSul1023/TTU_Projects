@@ -45,5 +45,16 @@ body {
     margin: auto;
 }
 
+.overlay-text {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for centering */
+    color: white; /* Text color */
+    font-size: 48px; /* Text size */
+    font-weight: bold; /* Bold text */
+    text-align: center; /* Center text */
+}
+
 
 

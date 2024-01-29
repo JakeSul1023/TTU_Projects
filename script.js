@@ -26,12 +26,18 @@ document.getElementById("yesButton").addEventListener("click", function() {
     image.src = "image.jpg"; // Replace with the path to your image
     image.className = "popup-image";
 
+    // Create a text element
+    const text = document.createElement("div");
+    text.className = "overlay-text";
+    text.textContent = "I LOVE YOU!"; // Replace with your text
+
     // Optional: Create a div to act as an overlay
     const overlay = document.createElement("div");
     overlay.className = "overlay";
 
     // Append the image and overlay to the body
     overlay.appendChild(image);
+    overlay.appendChild(text);
     document.body.appendChild(overlay);
 
     // Close the pop-up when clicking on the overlay
