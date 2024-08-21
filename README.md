@@ -13,7 +13,7 @@ Latest Summer Project: Vulnerbility Spider
     
     Status: Completed
 
-The rest of my repository contains projects that were assinged by Tennessee Technological University. 
+The rest of my repository contains projects that were assigned by Tennessee Technological University. 
 
 Contact 
 
