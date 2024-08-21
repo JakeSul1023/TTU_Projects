@@ -14,3 +14,9 @@ Latest Summer Project: Vulnerbility Spider
     Status: Completed
 
 The rest of my repository contains projects that were assinged by Tennessee Technological University. 
+
+Contact 
+
+    Feel free to reach out or visit my LinkedIn page
+    Email: Jakesullivan1023@gmail.com
+    LinkedIn: https://www.linkedin.com/in/jacobtsullivan/
