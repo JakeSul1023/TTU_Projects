@@ -15,7 +15,6 @@ Jake Sullivan – Computer Science Projects & Security Research
     1️⃣ Port Scanner
     A network security tool that scans for open ports on a target system.
     Useful for identifying misconfigured or exposed ports in security assessments.
-    Built in Python, using socket programming and multi-threading for efficiency.
     
     2️⃣ Vulnerability Spider (spider_vuln)
     A web crawler that identifies security vulnerabilities in websites.
