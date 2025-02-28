@@ -1,22 +1,27 @@
-Latest Summer Project: Vulnerbility Spider
-
-    Description: The Vulnerability Spider is a self-driven summer project focused on developing a web scraping tool with integrated vulnerability detection capabilities. 
-    This project utilizes Scrapy and Splash to handle dynamic web content and performs checks for common security issues.
-    Objective
-
-    Objective: The primary goal of this project is to identify potential security vulnerabilities on websites by leveraging scraping techniques. 
-    The tool analyzes web content for known vulnerability indicators based on the OWASP Top 10 vulnerabilities.
+Jake Sullivan – Computer Science Projects & Security Research
+   
+    Welcome! This repository is a collection of my Computer Science coursework and personal security projects. It showcases my work in C++, Python, networking, and cybersecurity, including web vulnerability scanning and port scanning tools.
     
-    Technologies: Python, Scrapy, Scrapy-Splash, OWASP
+    If you're here as a recruiter, feel free to explore the projects below!
+
+📂 Repository Overview
     
-    Link: https://github.com/JakeSul1023/TTU_Projects/blob/main/spider_vuln/spider_vuln/spiders/spider_vuln.py
+    This repo includes coursework from my Computer Science classes and two private security projects that focus on network and web security.
+
+🔐 Security Projects
+
+    These projects are private, but I’d be happy to discuss them further!
     
-    Status: Completed
+    1️⃣ Port Scanner
+    A network security tool that scans for open ports on a target system.
+    Useful for identifying misconfigured or exposed ports in security assessments.
+    
+    2️⃣ Vulnerability Spider (spider_vuln)
+    A web crawler that identifies security vulnerabilities in websites.
+    Uses OWASP guidelines to detect potential risks.
+    Designed for ethical security testing and research.
 
-The rest of my repository contains projects that were assigned by Tennessee Technological University. 
+💡 Why This Matters
 
-Contact 
-
-    Feel free to reach out or visit my LinkedIn page
-    Email: Jakesullivan1023@gmail.com
-    LinkedIn: https://www.linkedin.com/in/jacobtsullivan/
+    These projects highlight my problem-solving skills, ability to work with real-world security challenges, and experience with programming in C++ and Python. I enjoy building tools, exploring cybersecurity, and continuously learning about ethical hacking and vulnerability research.
+    If you're interested in my work, feel free to connect with me! 🚀
